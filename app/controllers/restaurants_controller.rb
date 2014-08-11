@@ -6,7 +6,7 @@ class RestaurantsController < ApplicationController
 	def new
 		@restaurant = Restaurant.new
 	end
-	
+
 	def create
 		Restaurant.create(params[:restaurant].permit(:name, :category))
 		redirect_to '/restaurants'
@@ -22,5 +22,12 @@ class RestaurantsController < ApplicationController
 		redirect_to '/restaurants'
 	end
 
+	def destroy
+		@restaurant = Restaurant.find(params[:id])
+		@restaurant.delete
+		flash[:notice] = "#{@restaurant.name} has been deleted."
+		redirect_to '/restaurants'
+
+	end
 end
 	
