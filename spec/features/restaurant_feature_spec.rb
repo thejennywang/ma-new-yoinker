@@ -46,6 +46,8 @@ describe 'Restaurants Index' do
 
 	end
 
+	
+
 end
 
 def add_restaurant(name: name, category: category)
