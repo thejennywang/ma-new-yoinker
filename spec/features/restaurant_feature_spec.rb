@@ -27,7 +27,7 @@ describe 'Restaurants Index' do
 
 	context 'adding a restaurant' do
 
-		it 'can add a resaturant' do
+		it 'can add a restaurant' do
 			visit '/restaurants'
 			click_link('Add a restaurant')
 			expect(page).to have_content('Enter restaurant details')
@@ -46,18 +46,18 @@ describe 'Restaurants Index' do
 
 	end
 
-	
+
 
 end
 
 def add_restaurant(name: name, category: category)
 	fill_in 'Name', with: name
 	fill_in 'Category', with: category
-	click_button 'Add restaurant'
+	click_button 'Create Restaurant'
 end
 
 def update_restaurant(category: category)
 	fill_in 'Category', with: category
-	click_button 'Update restaurant'
+	click_button 'Update Restaurant'
 end
 

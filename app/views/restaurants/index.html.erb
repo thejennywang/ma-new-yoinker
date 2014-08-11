@@ -8,7 +8,7 @@
 	<ul>
 		<% if @restaurants.any? %>
 			<% @restaurants.each do |restaurant| %>
-				<li> <%= restaurant.name %> - <%= restaurant.category %> | <a href="/restaurants/<%= restaurant.id %>/edit">Edit</a></li>
+				<li> <%= restaurant.name %> - <%= restaurant.category %> | <%= link_to 'Edit', edit_restaurant_path(restaurant) %></li>
 			<% end %>
 		<%else%>
 			<p>No restaurants yet</p>

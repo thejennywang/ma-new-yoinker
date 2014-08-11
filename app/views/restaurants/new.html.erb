@@ -6,14 +6,6 @@
 </head>
 <body>
 	<h1>Enter restaurant details</h1>
-	<%= form_for Restaurant.new do |f| %>
-		<%= f.label :name %>
-		<%= f.text_field :name, placeholder: "Jenny's Cafe, Charlottes' Bistro..." %>
-
-		<%= f.label :category %>
-		<%= f.text_field :category, placeholder: "Cafe, French..." %>
-
-		<%= f.submit 'Add restaurant' %>
-	<% end %>
+	<%= render 'form' %>
 </body>
 </html>
