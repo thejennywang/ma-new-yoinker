@@ -5,9 +5,9 @@
 	<title>Yelperonni</title>
 </head>
 <body>
-	<h1><%=@restaurant.name %></h1>
+	<h1><%= @restaurant.name %></h1>
 	<h2>Reviews</h2>
 	<p>No reviews yet</p>
-	<%= link_to 'Add a review', new_review_path %>
+	<%= link_to 'Add a review', new_review_path(@restaurant.id) %>
 </body>
 </html>
