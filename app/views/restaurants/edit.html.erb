@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Update <%=@restaurant.name%></title>
+</head>
+<body>
+	<h1>Update <%=@restaurant.name%></h1>
+	<%= form_for @restaurant do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name, value: @restaurant.name %>
+
+	<%= f.label :category %>
+	<%= f.text_field :category, value: @restaurant.category %>
+
+	<%= f.submit 'Update restaurant' %>
+	<% end %>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Yelperonni</title>
+</head>
+<body>
+	<ul>
+		<% if @restaurants.any? %>
+			<% @restaurants.each do |restaurant| %>
+				<li> <%= restaurant.name %> - <%= restaurant.category %> | <a href="/restaurants/<%= restaurant.id %>/edit">Edit</a></li>
+			<% end %>
+		<%else%>
+			<p>No restaurants yet</p>
+		<% end %>
+		</ul>
+	<a href="/restaurants/new">Add a restaurant</a>
+</body>
+</html>
