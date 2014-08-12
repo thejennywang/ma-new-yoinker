@@ -7,7 +7,7 @@
 <body>
 	<h1><%= @restaurant.name %></h1>
 	<%= form_for [@restaurant, @review] do |f| %>
-	<%= f.label :comment %>
+	<%= f.label :comment %> 
 	<%= f.text_area :comment %>
 
 	<%= f.label :rating %>

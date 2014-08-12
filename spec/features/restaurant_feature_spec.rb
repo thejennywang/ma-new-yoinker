@@ -58,8 +58,8 @@ describe 'Restaurants Index' do
 			click_link('Jenny\'s Cafe')
 			expect(page).to have_content('No reviews yet')
 		end
-	end
 
+	end
 
 end
 
