@@ -8,6 +8,16 @@
 	<h1> <%= @restaurant.name %> </h1>
 	<h2> <%= @restaurant.category %> </h2>
 	<h2> Reviews </h2>
-	<p>No reviews yet</p>
+		<% if @restaurant.reviews.any? %>
+			<ul>
+				<% @restaurant.reviews.each do |review| %>
+					<li><%= review.comment %>
+					(<%= review.rating %>)</li>
+				<% end %>
+			</ul>
+		<% else %>
+			<p>No reviews yet</p>
+		<% end %>
+	<%= link_to 'Add a review', new_restaurant_review_path(@restaurant) %>
 </body>
 </html>
