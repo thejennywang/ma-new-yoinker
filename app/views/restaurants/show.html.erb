@@ -7,9 +7,10 @@
 </head>
 <body>
 	<h1> <%= @restaurant.name %> </h1>
-	<h2> <%= @restaurant.category %> </h2>
+	<p> <%= @restaurant.category %> </p>
 	<h2> Reviews </h2>
 		<% if @restaurant.reviews.any? %>
+			<h3>Average rating: <%= @restaurant.average_rating %></h3>
 			<ul>
 				<% @restaurant.reviews.each do |review| %>
 					<li><%= review.comment %>

@@ -1,37 +1,37 @@
 require 'rails_helper'
 
-describe 'Restaurants Index' do
+describe 'Yelperoni' do
 	
 	context 'when there are no restaurants' do
 		
-		it 'should allow adding a restaurant' do
+		it 'allows adding a restaurant' do
 			visit '/restaurants'
 			expect(page).to have_content('No restaurants yet')
 			expect(page).to have_link('Add a restaurant')
 		end
 	end
 
-	context 'can add, display, modify and delete listings' do
+	context 'where restaurants have been added' do
 
-		before(:each) do
+		before do
 			Restaurant.create(name: "Jenny's Cafe", category: "Coffee")
 		end
 
 		it 'displays restaurants and cuisine type' do
-			visit '/restaurants'
+			visit restaurants_path
 			expect(page).to have_content ("Jenny's Cafe")
 			expect(page).to have_content ("Coffee")
 		end
 
-		it 'can show details of a restaurant' do
-			visit '/restaurants'
+		it 'displays details of a restaurant' do
+			visit restaurants_path
 			click_link("Jenny's Cafe")
 			expect(page).to have_content("Jenny's Cafe")
 			expect(page).to have_content("Reviews")
 		end
 
 		it 'can add a restaurant' do
-			visit '/restaurants'
+			visit restaurants_path
 			click_link('Add a restaurant')
 			expect(page).to have_content('Enter restaurant details')
 			add_restaurant(name: "Charlotte's Bistro", category: "French")
@@ -39,15 +39,15 @@ describe 'Restaurants Index' do
 		end
 
 		it 'can edit the details of a restaurant' do
-			visit '/restaurants'
+			visit restaurants_path
 			click_link('Edit')
 			expect(page).to have_content("Update Jenny's Cafe")
 			update_restaurant(category: "Gastro Pub")
 			expect(page).to have_content("Gastro Pub")
 		end
 
-		it 'can delete a listing' do
-			visit '/restaurants'
+		it 'can delete a restaurant' do
+			visit restaurants_path
 			click_link('Delete')
 			expect(page).to have_content("Jenny's Cafe has been deleted")
 			expect(page).not_to have_content("Jenny's Cafe - ")
@@ -59,7 +59,17 @@ describe 'Restaurants Index' do
 			expect(page).to have_content('No reviews yet')
 		end
 
+		it 'shows the average rating of a restaurant' do
+			restaurant = Restaurant.create(name: "Jenny's Cafe", category: "Coffee")
+			restaurant.reviews.create(rating: 4)
+			restaurant.reviews.create(rating: 5)
+			
+			visit restaurants_path(restaurant)
+			expect(page).to have_content('Average rating: 4.5')
+		end
+
 	end
+
 
 end
 

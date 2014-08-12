@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Yelperonni</title>
+	<title>Yelperoni</title>
 </head>
 <body>
-	<h1>Welcome to Yelperonni</h1>
+	<h1>Welcome to Yelperoni</h1>
 	<%= notice %>
 	<ul>
 		<% if @restaurants.any? %>
 			<% @restaurants.each do |restaurant| %>
+			  <h3> Average rating: <%= restaurant.average_rating %> </h3>
 				<li> <%= link_to restaurant.name, restaurant_path(restaurant) %> - <%= restaurant.category %> | <%= link_to 'Edit', edit_restaurant_path(restaurant) %> | <%=link_to 'Delete', restaurant_path(restaurant), method: :delete  %> </li>
 			<% end %>
 		<%else%>
