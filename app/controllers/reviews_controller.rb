@@ -1,13 +1,13 @@
 class ReviewsController < ApplicationController
 
 	def new
-		@review = Review.new(restaurant_id: params[:format])
-		puts @review.inspect
+		@restaurant = Restaurant.find(params[:restaurant_id])
+		@review = Review.new
 	end
 
 	def create
-		Review.create(params[:review].permit(:rating, :comment, :restaurant_id))
-		flash[:notice] = "Thank you for your review!"
-		redirect_to "/restaurants"
+		@restaurant = Restaurant.find(params[:restaurant_id])
+		@restaurant.reviews.create(params[:review].permit(:comment, :rating))
+		redirect_to restaurant_path(@restaurant)
 	end
 end

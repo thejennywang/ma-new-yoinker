@@ -1,29 +1,21 @@
 require 'rails_helper'
 
-describe 'Reviews' do
+describe 'Reviews for restaurants' do
 	
-	before do
-		Restaurant.create(name: "Charlotte's Bistro", category: "French")
-	end
-
-	context 'when a restaurant has no reviews' do
-		
-		it 'a user should be able to add a review' do
-			visit '/restaurants'
-			click_link('Charlotte\'s Bistro')
-			expect(page).to have_content("No reviews yet")
-			expect(page).to have_link("Add a review")
+	context 'when adding reviews' do
+		before(:each) do
+			Restaurant.create(name: "Jenny's Cafe", category: "Coffee")
 		end
 
-		it 'should post a review to a restaurant listing' do
-			visit 'restaurants'
-			click_link('Charlotte\'s Bistro')
-			click_link('Add a review')
-			fill_in 'Rating', with: '5'
-			fill_in 'Comment', with: "TEST REVIEW" 
-			click_button("Create Review")
-			expect(page).to have_content("Thank you for your review!")
+		it 'user fills out a form to add review which is then viewable on the restaurant page' do
+			visit restaurants_path
+			click_link 'Jenny\'s Cafe'
+			click_link 'Add a review'
+			fill_in 'Comment', with: "Excellent"
+			select '5', from: 'Rating'
+			click_button 'Submit Review'
+			expect(page).to have_content("Excellent")
+			expect(page).to have_content("5")
 		end
 	end
-
 end
