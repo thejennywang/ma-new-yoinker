@@ -23,13 +23,6 @@ describe 'Restaurants Index' do
 			expect(page).to have_content ("Coffee")
 		end
 
-		it 'can show details of a restaurant' do
-			visit '/restaurants'
-			click_link("Jenny's Cafe")
-			expect(page).to have_content("Jenny's Cafe")
-			expect(page).to have_content("Reviews")
-		end
-
 		it 'can add a restaurant' do
 			visit '/restaurants'
 			click_link('Add a restaurant')
