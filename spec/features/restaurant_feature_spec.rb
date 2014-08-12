@@ -11,17 +11,21 @@ describe 'Restaurants Index' do
 		end
 	end
 
-	context 'can add, display, modify and delete listings' do
+	context 'when restaurants have been added' do
 
 		before(:each) do
 			Restaurant.create(name: "Jenny's Cafe", category: "Coffee")
 		end
 
-		it 'displays restaurants and cuisine type' do
+		it 'displays the restaurant and cuisine type' do
 			visit '/restaurants'
 			expect(page).to have_content ("Jenny's Cafe")
 			expect(page).to have_content ("Coffee")
 		end
+
+	end
+
+	context 'adding a restaurant' do
 
 		it 'can add a restaurant' do
 			visit '/restaurants'
@@ -32,6 +36,7 @@ describe 'Restaurants Index' do
 		end
 
 		it 'can edit the details of a restaurant' do
+			Restaurant.create(name: "Jenny's Cafe", category: "Coffee")
 			visit '/restaurants'
 			click_link('Edit')
 			expect(page).to have_content("Update Jenny's Cafe")
@@ -39,14 +44,9 @@ describe 'Restaurants Index' do
 			expect(page).to have_content("Gastro Pub")
 		end
 
-		it 'can delete a listing' do
-			visit '/restaurants'
-			click_link('Delete')
-			expect(page).to have_content("Jenny's Cafe has been deleted")
-			expect(page).not_to have_content("Jenny's Cafe - ")
-		end
-
 	end
+
+
 
 end
 
