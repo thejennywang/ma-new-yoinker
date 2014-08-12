@@ -46,7 +46,13 @@ describe 'Restaurants Index' do
 			expect(page).not_to have_content("Jenny's Cafe - ")
 		end
 
+		it 'can show individual restaurant pages' do
+			visit restaurants_path
+			click_link('Jenny\'s Cafe')
+			expect(page).to have_content('No reviews yet')
+		end
 	end
+
 
 end
 
