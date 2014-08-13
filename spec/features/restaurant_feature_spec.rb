@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Yelperoni' do
+describe 'Yoink' do
 	
 	context 'when there are no restaurants' do
 		
@@ -58,29 +58,6 @@ describe 'Yelperoni' do
 			click_link('Jenny\'s Cafe')
 			expect(page).to have_content('No reviews yet')
 		end
-
-		it 'shows the average rating of a restaurant' do
-			restaurant = Restaurant.create(name: "Jenny's Cafe", category: "Coffee")
-			restaurant.reviews.create(rating: 4)
-			restaurant.reviews.create(rating: 5)
-			
-			visit restaurants_path(restaurant)
-			expect(page).to have_content('Average rating: 4.5')
-		end
-
 	end
-
-
-end
-
-def add_restaurant(name: name, category: category)
-	fill_in 'Name', with: name
-	fill_in 'Category', with: category
-	click_button 'Create Restaurant'
-end
-
-def update_restaurant(category: category)
-	fill_in 'Category', with: category
-	click_button 'Update Restaurant'
 end
 

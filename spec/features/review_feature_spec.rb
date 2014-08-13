@@ -7,14 +7,17 @@ describe 'Reviews for restaurants' do
 	end
 
 	it 'user fills out a form to add a review that will be viewable on the restaurant page' do
-		visit restaurants_path
-		click_link 'Jenny\'s Cafe'
-		click_link 'Add a review'
-		fill_in 'Comment', with: "Excellent"
-		select '5', from: 'Rating'
-		click_button 'Submit Review'
+		leave_review 'Excellent', 5
+		
 		expect(page).to have_content("Excellent")
 		expect(page).to have_content("5")
-		end
+	end
+
+	it 'displays the average rating from all reviews' do
+		leave_review 'Excellent', 5
+		leave_review 'So so', 3
+
+		expect(page).to have_content('Average rating: 4')
+	end
 
 end
