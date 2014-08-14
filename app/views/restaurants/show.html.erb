@@ -1,33 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title><%= @restaurant.name %></title>
-	<link rel="stylesheet" type="text/css" href="stylesheets/styles.css">
-	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-</head>
-<body>
-	<h1> <%= @restaurant.name %> </h1>
-	<p> <%= @restaurant.category %> </p>
-	<h2> Reviews </h2>
-	<% if @restaurant.reviews.any? %>
-	<h3>Average rating: <%= @restaurant.average_rating %></h3>
-	<ul>
-		<% @restaurant.reviews.each do |review| %>
-		<li>
-			<%= "#{review.comment} (#{star_rating(review.rating)})"%>
-			<em> - Posted <%= time_ago_in_words(review.created_at) %> ago</em>
-			<%= link_to review_endorsements_path(review), method: :post do %>
-				<span class="like-btn"><i class="fa fa-thumbs-o-up"> <%= review.endorsements.count %></i>
-					</span>
-			<% end %>
-		</li>
+<h1> <%= @restaurant.name %> </h1>
+<p> <%= @restaurant.category %> </p>
+<h2> Reviews </h2>
+<% if @restaurant.reviews.any? %>
+<h3>Average rating: <%= @restaurant.average_rating %></h3>
+<ul>
+	<% @restaurant.reviews.each do |review| %>
+	<li>
+		<%= "#{review.comment} (#{star_rating(review.rating)})"%>
+		<em> - Posted <%= time_ago_in_words(review.created_at) %> ago</em>
+		<%= link_to review_endorsements_path(review), class: 'like-btn', method: :post do %>
+			<i class="fa fa-thumbs-o-up"> <span class="like-count"><%= review.endorsements.count %></span></i>
 		<% end %>
-	</ul>
-	<% else %>
-	<p>No reviews yet</p>
+	</li>
 	<% end %>
-	<%= link_to 'Add a review', new_restaurant_review_path(@restaurant), :class => "add-review" %>
-</body>
-</html>
-
+</ul>
+<% else %>
+<p>No reviews yet</p>
+<% end %>
+<%= link_to 'Add a review', new_restaurant_review_path(@restaurant), :class => "add-review" %>

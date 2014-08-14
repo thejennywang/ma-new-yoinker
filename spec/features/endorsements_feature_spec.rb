@@ -6,12 +6,10 @@ describe 'endorsing reviews' do
 		@kfc.reviews.create(rating: 2, comment: "Okay")
 	end
 
-	it "can endorse reviews, updating the review's endorsement count" do
+	it "can endorse reviews, updating the review's endorsement count", js: true do
 		visit restaurant_path(@kfc)
-		click_link "Endorse this review"
-		expect(page).to have_content '1 endorsement'
+		find('.like-btn').click
+		expect(page).to have_css '.like-count', text: '1'
 	end
 end
 
-		# find('.like-btn').click
-		# expect(page).to have_css '.like-count', text: '1'

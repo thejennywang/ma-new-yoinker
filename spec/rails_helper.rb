@@ -6,6 +6,7 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'rspec/collection_matchers'
 require "database_cleaner"
+require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
