@@ -55,15 +55,7 @@ describe 'Yoink' do
 				expect(page).to have_content("Charlotte's Bistro")
 			end
 
-			it 'can edit the details of a restaurant' do
-				visit restaurants_path
-				click_link('Edit')
-				expect(page).to have_content("Update Jenny's Cafe")
-				update_restaurant(category: "Gastro Pub")
-				expect(page).to have_content("Gastro Pub")
-			end
-
-			it 'can delete a restaurant' do
+			it 'can delete a restaurant when user clicks delete link' do
 				visit restaurants_path
 				click_link('Delete')
 				expect(page).to have_content("Jenny's Cafe has been deleted")
