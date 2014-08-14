@@ -7,9 +7,10 @@ describe 'endorsing reviews' do
 	end
 
 	it "can endorse reviews, updating the review's endorsement count", js: true do
+		puts @kfc.inspect
 		visit restaurant_path(@kfc)
 		find('.like-btn').click
-		expect(page).to have_css '.like-count', text: '1'
+		expect(page).to have_css '.endorsement_count', text: '1'
 	end
 end
 
