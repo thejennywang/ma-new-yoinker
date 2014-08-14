@@ -1,3 +1,9 @@
 ul {
 	list-style: none;
 }
+
+.like-btn {
+	border: solid 1px #000;
+	padding: 1px 5px 0px 5px;
+	border-radius: 5px;
+}

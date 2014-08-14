@@ -17,8 +17,10 @@
 		<li>
 			<%= "#{review.comment} (#{star_rating(review.rating)})"%>
 			<em> - Posted <%= time_ago_in_words(review.created_at) %> ago</em>
-			<%= review.endorsements.count %> endorsements
-			<%= link_to 'Endorse this review', review_endorsements_path(review), method: :post %>
+			<%= link_to review_endorsements_path(review), method: :post do %>
+				<span class="like-btn"><i class="fa fa-thumbs-o-up"> <%= review.endorsements.count %></i>
+					</span>
+			<% end %>
 		</li>
 		<% end %>
 	</ul>
