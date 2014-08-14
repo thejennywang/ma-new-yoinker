@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Restaurant, :type => :model do
 
-  let!(:restaurant) { Restaurant.create!(name: "Test", category: "test") }
+  let(:restaurant) { Restaurant.create(name: "Test", category: "test") }
+
 
   describe "#average_rating" do
 
