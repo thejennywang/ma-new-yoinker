@@ -31,7 +31,6 @@ class RestaurantsController < ApplicationController
 		@restaurant.delete
 		flash[:notice] = "#{@restaurant.name} has been deleted."
 		redirect_to '/restaurants'
-
 	end
 
 	def show

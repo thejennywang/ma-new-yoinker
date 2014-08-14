@@ -2,24 +2,30 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-
 	<title><%= @restaurant.name %></title>
+	<link rel="stylesheet" type="text/css" href="stylesheets/styles.css">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
 	<h1> <%= @restaurant.name %> </h1>
 	<p> <%= @restaurant.category %> </p>
 	<h2> Reviews </h2>
-		<% if @restaurant.reviews.any? %>
-			<h3>Average rating: <%= @restaurant.average_rating %></h3>
-			<ul>
-				<% @restaurant.reviews.each do |review| %>
-					<li><%= review.comment %>
-					(<%= review.rating %>)</li>
-				<% end %>
-			</ul>
-		<% else %>
-			<p>No reviews yet</p>
+	<% if @restaurant.reviews.any? %>
+	<h3>Average rating: <%= @restaurant.average_rating %></h3>
+	<ul>
+		<% @restaurant.reviews.each do |review| %>
+		<li>
+			<%= "#{review.comment} (#{star_rating(review.rating)})"%>
+			<em> - Posted <%= time_ago_in_words(review.created_at) %> ago</em>
+			<%= review.endorsements.count %> endorsements
+			<%= link_to 'Endorse this review', review_endorsements_path(review), method: :post %>
+		</li>
 		<% end %>
-	<%= link_to 'Add a review', new_restaurant_review_path(@restaurant) %>
+	</ul>
+	<% else %>
+	<p>No reviews yet</p>
+	<% end %>
+	<%= link_to 'Add a review', new_restaurant_review_path(@restaurant), :class => "add-review" %>
 </body>
 </html>
+

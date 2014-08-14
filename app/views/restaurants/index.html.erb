@@ -3,7 +3,7 @@
 	<ul>
 		<% if @restaurants.any? %>
 			<% @restaurants.each do |restaurant| %>
-				<li> <%= link_to restaurant.name, restaurant_path(restaurant) %> - <%= restaurant.category %> | <%= link_to 'Edit', edit_restaurant_path(restaurant) %> | <%=link_to 'Delete', restaurant_path(restaurant), method: :delete  %> </li>
+				<li>  <%= link_to restaurant.name, restaurant_path(restaurant) %> - <%= restaurant.category %> | <%= link_to 'Edit', edit_restaurant_path(restaurant) %> | <%=link_to 'Delete', restaurant_path(restaurant), method: :delete  %> </li>
 			<% end %>
 		<%else%>
 			<p>No restaurants yet</p>
@@ -12,5 +12,3 @@
 	<%=link_to 'Add a restaurant', new_restaurant_path %>
 </body>
 </html>
-
-<!-- data: {confirm: "Are you sure you want to delete this listing?"} -->

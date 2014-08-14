@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -30,6 +30,7 @@ group :development, :test do
 	gem 'rspec-rails'
 	gem 'capybara'
 	gem 'rspec-collection_matchers'
+	gem 'database_cleaner'
 end
 
 # Use ActiveModel has_secure_password

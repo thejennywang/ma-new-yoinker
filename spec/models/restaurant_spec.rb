@@ -2,9 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Restaurant, :type => :model do
 
-  let (:restaurant) { Restaurant.create(name: "Test", category: "test") }
+  let!(:restaurant) { Restaurant.create!(name: "Test", category: "test") }
 
   describe "#average_rating" do
+
     context 'no reviews' do
       it 'returns N/A' do
         expect(restaurant.average_rating).to eq "N/A"
@@ -40,10 +41,6 @@ RSpec.describe Restaurant, :type => :model do
 
     it 'must have a name > 2 characters, starting with a capital letter and have a category' do
       expect(restaurant).to be_valid
-    end
-
-    it 'must have a name' do
-      expect(Restaurant.count).to eq 0
     end
 
     it 'must have a name > 2 characters' do
