@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe Restaurant, :type => :model do
 
   let(:restaurant) { Restaurant.create(name: "Test", category: "test") }
-
+  let(:user) { User.create(email: 'a@a.com', password: '12345678', password_confirmation: '12345678') }
+  let(:user2) { User.create(email: 'b@b.com', password: '12345678', password_confirmation: '12345678') }
 
   describe "#average_rating" do
 
@@ -15,22 +16,22 @@ RSpec.describe Restaurant, :type => :model do
 
     context '1 review' do
       it 'returns that rating' do
-        restaurant.reviews.create(rating: 4)
+        restaurant.reviews.create(rating: 4, user: user)
         expect(restaurant.average_rating).to eq 4
       end
     end
 
     context 'multiple reviews' do
       it 'returns the average rating' do
-        restaurant.reviews.create(rating: 5)
-        restaurant.reviews.create(rating: 3)
+      restaurant.reviews.create(rating: 3, user: user)
+      restaurant.reviews.create(rating: 5, user: user2)
 
         expect(restaurant.average_rating).to eq 4
       end
 
-      it 'returns a flot if average is not a whole number' do
-        restaurant.reviews.create(rating: 5)
-        restaurant.reviews.create(rating: 4)
+      it 'returns a float if average is not a whole number' do
+      restaurant.reviews.create(rating: 4, user: user)
+      restaurant.reviews.create(rating: 5, user: user2)
 
         expect(restaurant.average_rating).to eq 4.5
       end
@@ -60,8 +61,8 @@ RSpec.describe Restaurant, :type => :model do
     end
 
     it 'has an average rating' do
-      restaurant.reviews.create(rating: 4)
-      restaurant.reviews.create(rating: 5)
+      restaurant.reviews.create(rating: 4, user: user)
+      restaurant.reviews.create(rating: 5, user: user2)
       expect(restaurant.average_rating).to eq 4.5
     end
   end
