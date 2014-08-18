@@ -22,7 +22,7 @@ describe 'Yoink' do
 		context 'when there are no restaurants' do
 			
 			it 'allows adding a restaurant' do
-				visit '/restaurants'
+				visit restaurants_path
 				expect(page).to have_content('No restaurants yet')
 				expect(page).to have_link('Add a restaurant')
 			end
