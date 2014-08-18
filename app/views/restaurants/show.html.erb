@@ -18,4 +18,6 @@
 <% else %>
 <p>No reviews yet</p>
 <% end %>
-<%= link_to 'Add a review', new_restaurant_review_path(@restaurant), :class => "add-review" %>
+<%= unless restaurant.has_been_reviewed_by?(current_user) %>
+	<%= link_to 'Add a review', new_restaurant_review_path(@restaurant), :class => "add-review" %>
+	<% end %>

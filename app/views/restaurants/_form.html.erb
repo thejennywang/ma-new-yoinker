@@ -1,22 +1,21 @@
 <% if @restaurant.errors.any? %>
-	<div id="error_explanation">
-		<h2><%= pluralize(@restaurant.errors.count, "error")
-			%> prohibited this restaurant from being saved:</h2>
-
-		<ul>
-			<% @restaurant.errors.full_messages.each do |msg| %>
-				<li><%= msg %></li>
-			<% end %>
-		</ul>
-	</div>
+  <div id="error_explanation">
+    <h2><%= pluralize(@restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
+ 
+    <ul>
+    <% @restaurant.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
 <% end %>
 
 <%= form_for @restaurant do |f| %>
-		<%= f.label :name %>
-		<%= f.text_field :name, placeholder: "Jenny's Cafe...", required: true %>
+	<%= f.label :name %>
+	<%= f.text_field :name, placeholder: "Jenny's Cafe...", required: true %>
 
-		<%= f.label :category %>
-		<%= f.text_field :category, placeholder: "Coffee, French...", required: true %>
+	<%= f.label :category %>
+	<%= f.text_field :category, placeholder: "Coffee, French...", required: true %>
 
-		<%= f.submit %>
-	<% end %>
+	<%= f.submit %>
+<% end %>

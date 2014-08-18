@@ -7,7 +7,11 @@ class Restaurant < ActiveRecord::Base
 
 	def average_rating
 		return 'N/A' if reviews.none?
-		reviews.average(:rating)
+		reviews.average(:rating).round(1)
+	end
+
+	def has_been_reviewed_by?(user)
+		reviews.find_by(user: user)
 	end
 end
 

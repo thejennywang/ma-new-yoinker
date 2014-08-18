@@ -26,14 +26,14 @@ RSpec.describe Restaurant, :type => :model do
       restaurant.reviews.create(rating: 3, user: user)
       restaurant.reviews.create(rating: 5, user: user2)
 
-        expect(restaurant.average_rating).to eq 4
+      expect(restaurant.average_rating).to eq 4
       end
 
       it 'returns a float if average is not a whole number' do
       restaurant.reviews.create(rating: 4, user: user)
       restaurant.reviews.create(rating: 5, user: user2)
 
-        expect(restaurant.average_rating).to eq 4.5
+      expect(restaurant.average_rating).to eq 4.5
       end
     end
 
@@ -48,6 +48,13 @@ RSpec.describe Restaurant, :type => :model do
     it 'must have a name > 2 characters' do
       restaurant_with_short_name = Restaurant.create(name: "Ab")
       expect(restaurant_with_short_name).to have(1).error_on(:name)
+    end
+
+    it 'must have a unique name' do
+      Restaurant.create(name: "Test", category: "test")
+      duplicate_restaurant = Restaurant.new(name: "Test", category: "test")
+
+      expect(duplicate_restaurant).to have(1).error_on(:name)
     end
 
     it 'must have name with its first letter capitalized' do
