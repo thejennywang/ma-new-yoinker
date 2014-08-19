@@ -4,7 +4,7 @@ describe 'endorsing reviews' do
 	before do
 		alex = User.create(email: 'a@a.com', password: '12345678', password_confirmation: '12345678')
 		login_as alex
-		@kfc = Restaurant.create(name: 'KFC', category: "Fast food")
+		@kfc = Restaurant.create(name: 'KFC')
 		@kfc.reviews.create(rating: 2, comment: "Okay")
 	end
 

@@ -1,14 +1,22 @@
-	<h1>Welcome to Yoink</h1>
-	<%= notice %>
-	<ul>
-		<% if @restaurants.any? %>
-			<% @restaurants.each do |restaurant| %>
-				<li>  <%= link_to restaurant.name, restaurant_path(restaurant) %> - <%= restaurant.category %> (Average rating: <%= restaurant.average_rating %>) | <%= link_to 'Edit', edit_restaurant_path(restaurant) %> | <%=link_to 'Delete', restaurant_path(restaurant), method: :delete  %> </li>
-			<% end %>
-		<%else%>
-			<p>No restaurants yet</p>
-		<% end %>
-		</ul>
+
+<button class="new-listing button">
 	<%=link_to 'Add a restaurant', new_restaurant_path %>
-</body>
-</html>
+</button>
+<ul>
+	<% if @restaurants.any? %>
+	<% @restaurants.each do |restaurant| %>
+	<li class="restaurants-container"> 
+		<div class="listing-container">
+			<div class="restaurant-name"><%= link_to restaurant.name, restaurant_path(restaurant) %></div>
+			<div class="ratings">
+				<span class="star-rating"><%= star_rating(restaurant.average_rating) %></span>
+				<span class="total-reviews"> <%= restaurant.reviews.count %> reviews</span></div>
+				<span class="edit-button link-button"><%= link_to 'Edit', edit_restaurant_path(restaurant) %></span>
+				<span class="delete-button link-button"><%=link_to 'Delete', restaurant_path(restaurant), method: :delete  %> </span>
+			</div>
+		</li>
+		<% end %>
+		<%else%>
+		<p>No restaurants yet</p>
+		<% end %>
+	</ul>

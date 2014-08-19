@@ -4,7 +4,8 @@ describe "editing restaurants" do
 		
 		before do
 			alex = User.create(email: 'a@a.com', password: '12345678', password_confirmation: '12345678')
-			@restaurant = alex.restaurants.create(name: "Alex's ", category: "Coffee")
+			@restaurant = alex.restaurants.create(name: "Alex's "
+				)
 			login_as alex
 		end
 

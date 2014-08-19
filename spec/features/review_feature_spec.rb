@@ -5,7 +5,7 @@ describe 'Reviews for restaurants' do
 	before(:each) do
 		jenny = User.create(email: 'j@j.com', password: '12345678', password_confirmation: '12345678')
 		login_as jenny
-		jenny.restaurants.create(name: "Jenny's Cafe", category: "Coffee")
+		jenny.restaurants.create(name: "Jenny's Cafe")
 	end
 
 	it 'allow users to fill out a form to add a review that will be viewable on the restaurant page' do
@@ -27,8 +27,9 @@ describe 'Reviews for restaurants' do
 
 	it 'does not allow users to leave duplicate reviews' do
 		leave_review 'So so', 3
-		leave_review 'Great', 5
-		expect(page).to have_content 'error'
+		expect(page).not_to have_content 'Add a review'
 	end
+
+
 
 end

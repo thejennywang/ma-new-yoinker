@@ -1,13 +1,122 @@
+body {
+	font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+	margin: 0;
+}
+
+div {
+	display: block;
+}
+
+h1 {
+	text-align: left;
+	color: #FFF;
+	font-size: 50px;
+	font-weight: bold;
+	padding: 15px;
+}
+
+h2 {
+	font-size: 36px;
+	text-align: center;
+	padding: 15px;
+}
+
+h3 {
+	text-align: center;
+}
+
 ul {
 	list-style: none;
+}
+
+li {
+	display: table-cell;
+}
+
+button {
+	display: block;
+	background-color: #af0606; 
+	color: white;
+	border: solid #000;
+	border-radius: 5px;
+	text-decoration: none;
+	font-size: 14px;
+	font-family: "Arial Rounded MT Bold";
+
+}
+
+.header {
+	position: relative;
+	height: 75px;
+	min-width: 990px;
+	background: #af0606 url(//s3-media1.ak.yelpcdn.com/assets/2/www/img/7ccfbbb81622/structural/header_stars.png) no-repeat center;
+	-webkit-box-shadow: 0 0 5px rgba(78,2,2,0.76);
+	box-shadow: 0 0 5px rgba(78,2,2,0.76);
+	z-index: 100;
+	margin: 0 auto;
+}
+.header-container {
+	width: 990px;
+	margin: 0 auto;
+}
+
+.header-item {
+	display: block;
+}
+
+.logo {
+	max-height: 100px;
+	position: relative;
+	float: left;
+}
+
+.nav {
+	position: relative;
+	float: right;
+	margin-top: -50px;
+}
+
+.logged-in-as {
+	color: #FFF;
+}
+
+.body-container {
+	width: 990px;
+	margin: 0 auto;
+}
+
+.restaurants-container {
+	margin: 0 auto;
+	max-width: 990px
+}
+
+.listing-container {
+	display: block;
+	width: 200px;
+	height: 100px;
+	border: solid #000;
+	border-radius: 5px;
+	padding: 10px;
+	margin: 15px;
+}
+
+.new-listing {
+	position: absolute;
+	float: center;
+	padding: 5px;
+	border: solid 1px #000;
+	border-radius: 2px;
+	color: white;
+	text-decoration: none;
+}
+
+.new-listing:focus, .new-listing:visited, {
+	color: white;
+	text-decoration: none;
 }
 
 .endorsement-link {
 	border: solid 1px mediumblue;
 	padding: 1px 5px 0px 5px;
 	border-radius: 5px;
-}
-
-a {
-	color: mediumblue;
 }

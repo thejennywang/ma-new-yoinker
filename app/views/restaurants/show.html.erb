@@ -1,23 +1,20 @@
-<h1> <%= @restaurant.name %> </h1>
-<p> <%= @restaurant.category %> </p>
-<h2> Reviews </h2>
+<h2> <%= @restaurant.name %> </h2>
 <% if @restaurant.reviews.any? %>
-<h3>Average rating: <%= @restaurant.average_rating %></h3>
+<h4>Average rating: <%= @restaurant.average_rating %></h4>
 <ul>
 	<% @restaurant.reviews.each do |review| %>
 	<li>
 		<%= "#{review.comment} (#{star_rating(review.rating)})"%>
-		<em> - Posted <%= time_ago_in_words(review.created_at) %> ago</em>
-		<%= link_to review_endorsements_path(review), class: 'endorsement-link' do %>
+		<div class="post-time"><em>Posted <%= time_ago_in_words(review.created_at) %> ago</em></div>
+		<div class="like button"><%= link_to review_endorsements_path(review), class: 'endorsement-link' do %>
 			<i class="fa fa-thumbs-o-up"> <span class="endorsement_count"><%= review.endorsements.count %></span></i>
-		
-		<% end %>
+		<% end %></div>
 	</li>
 	<% end %>
 </ul>
 <% else %>
-<p>No reviews yet</p>
+	<p>No reviews yet</p>
 <% end %>
-<%= unless restaurant.has_been_reviewed_by?(current_user) %>
+<% unless @restaurant.has_been_reviewed_by?(current_user) %>
 	<%= link_to 'Add a review', new_restaurant_review_path(@restaurant), :class => "add-review" %>
 	<% end %>

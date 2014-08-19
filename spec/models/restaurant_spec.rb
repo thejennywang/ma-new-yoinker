@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Restaurant, :type => :model do
 
-  let(:restaurant) { Restaurant.create(name: "Test", category: "test") }
+  let(:restaurant) { Restaurant.create(name: "Test") }
   let(:user) { User.create(email: 'a@a.com', password: '12345678', password_confirmation: '12345678') }
   let(:user2) { User.create(email: 'b@b.com', password: '12345678', password_confirmation: '12345678') }
 
@@ -41,7 +41,7 @@ RSpec.describe Restaurant, :type => :model do
 
   describe 'validations' do
 
-    it 'must have a name > 2 characters, starting with a capital letter and have a category' do
+    it 'must have a name > 2 characters, starting with a capital letter' do
       expect(restaurant).to be_valid
     end
 
@@ -51,8 +51,8 @@ RSpec.describe Restaurant, :type => :model do
     end
 
     it 'must have a unique name' do
-      Restaurant.create(name: "Test", category: "test")
-      duplicate_restaurant = Restaurant.new(name: "Test", category: "test")
+      Restaurant.create(name: "Test")
+      duplicate_restaurant = Restaurant.new(name: "Test")
 
       expect(duplicate_restaurant).to have(1).error_on(:name)
     end
@@ -62,10 +62,6 @@ RSpec.describe Restaurant, :type => :model do
       expect(restaurant_with_uncapitalized_name).to have(1).error_on(:name)
     end
 
-    it 'must have a category' do
-      restaurant_with_no_category = Restaurant.create(name: "Some Name")
-      expect(restaurant_with_no_category).to have(1).error_on(:category)
-    end
 
     it 'has an average rating' do
       restaurant.reviews.create(rating: 4, user: user)

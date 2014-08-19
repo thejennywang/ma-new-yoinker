@@ -34,7 +34,7 @@ class RestaurantsController < ApplicationController
 
 	def update
 		@restaurant = current_user.restaurants.find(params[:id])
-		@restaurant.update(params[:restaurant].permit(:name, :category))
+		@restaurant.update(params[:restaurant].permit(:name))
 		redirect_to '/restaurants'
 	end
 

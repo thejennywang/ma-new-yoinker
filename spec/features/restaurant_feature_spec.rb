@@ -3,11 +3,11 @@ require 'rails_helper'
 describe 'Yoink' do
 
 	context 'when user is logged out' do
-		it 'should prompt to sign in' do
+		it 'should prompt to log in' do
 			visit restaurants_path
 			click_link 'Add a restaurant'
 
-			expect(page).to have_content 'sign in'
+			expect(page).to have_content 'Log in'
 		end
 	end
 
@@ -31,27 +31,26 @@ describe 'Yoink' do
 		context 'where restaurants have been added' do
 
 			before do
-				Restaurant.create(name: "Jenny's Cafe", category: "Coffee")
+				Restaurant.create(name: "Jenny's Cafe")
 			end
 
 			it 'displays restaurants and cuisine type' do
 				visit restaurants_path
 				expect(page).to have_content ("Jenny's Cafe")
-				expect(page).to have_content ("Coffee")
 			end
 
 			it 'displays details of a restaurant' do
 				visit restaurants_path
 				click_link("Jenny's Cafe")
 				expect(page).to have_content("Jenny's Cafe")
-				expect(page).to have_content("Reviews")
+				expect(page).to have_content("Add a review")
 			end
 
 			it 'can add a restaurant' do
 				visit restaurants_path
 				click_link('Add a restaurant')
 				expect(page).to have_content('Enter restaurant details')
-				add_restaurant(name: "Charlotte's Bistro", category: "French")
+				add_restaurant(name: "Charlotte's Bistro")
 				expect(page).to have_content("Charlotte's Bistro")
 			end
 
